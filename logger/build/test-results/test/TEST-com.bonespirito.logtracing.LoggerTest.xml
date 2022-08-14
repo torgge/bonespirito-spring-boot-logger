@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.bonespirito.logtracing.LoggerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-08-14T12:52:48" hostname="MacBook-Pro-de-George.local" time="0.909">
+  <properties/>
+  <testcase name="test" classname="com.bonespirito.logtracing.LoggerTest" time="0.909"/>
+  <system-out><![CDATA[09:52:49.171 [Test worker] DEBUG io.mockk.impl.instantiation.AbstractMockFactory - Creating mockk for LoggerProperties name=#1
+09:52:49.624 [Test worker] DEBUG io.mockk.impl.recording.states.AnsweringState - Answering LoggerProperties(#1) on LoggerProperties(#1).toString()
+09:52:49.624 [Test worker] INFO com.bonespirito.logtracing.LoggerTracing - properties: LoggerProperties(#1)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

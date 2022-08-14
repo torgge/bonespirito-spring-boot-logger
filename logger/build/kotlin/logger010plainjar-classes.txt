@@ -1,0 +1,1 @@
+/Users/gbonespirito/Development/bonespirito-spring-boot-log-tracing/logger/build/classes/kotlin/main/com/bonespirito/logtracing/LoggerTracing.class:/Users/gbonespirito/Development/bonespirito-spring-boot-log-tracing/logger/build/classes/kotlin/main/com/bonespirito/logtracing/configuration/LoggerProperties.class
