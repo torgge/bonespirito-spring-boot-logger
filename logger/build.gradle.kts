@@ -1,5 +1,5 @@
 
-version = "0.1.3"
+version = project.findProperty("package.version") as String
 group = "com.bonespirito"
 
 plugins {
@@ -24,7 +24,7 @@ publishing {
         register("gpr", MavenPublication::class) {
             groupId = "com.bonespirito.bonespirito-spring-boot-logger"
             artifactId = "logger"
-            version = "0.1.3"
+            version = project.findProperty("package.version") as String
             from(components["java"])
         }
     }
