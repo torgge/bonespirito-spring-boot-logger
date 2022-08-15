@@ -1,5 +1,5 @@
 
-version = "0.1.1"
+version = "0.1.2"
 group = "com.bonespirito"
 
 plugins {
@@ -15,8 +15,8 @@ publishing {
             name = "GitHubPackages"
             url = uri(project.findProperty("repo.url") as String)
             credentials {
-                username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
+                username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_ACTOR")
+                password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
             }
         }
     }
@@ -24,7 +24,7 @@ publishing {
         register("gpr", MavenPublication::class) {
             groupId = "com.bonespirito.bonespirito-spring-boot-logger"
             artifactId = "logger"
-            version = "0.1.1"
+            version = "0.1.2"
             from(components["java"])
         }
     }
