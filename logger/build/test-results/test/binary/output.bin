@@ -1,3 +1,0 @@
-09:52:49.171 [Test worker] DEBUG io.mockk.impl.instantiation.AbstractMockFactory - Creating mockk for LoggerProperties name=#1
-“09:52:49.624 [Test worker] DEBUG io.mockk.impl.recording.states.AnsweringState - Answering LoggerProperties(#1) on LoggerProperties(#1).toString()
-l09:52:49.624 [Test worker] INFO com.bonespirito.logtracing.LoggerTracing - properties: LoggerProperties(#1)
