@@ -7,13 +7,35 @@ import com.bonespirito.logtracing.configuration.LoggerProperties
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.context.properties.EnableConfigurationProperties
+import org.springframework.http.HttpHeaders.* // ktlint-disable no-wildcard-imports
+import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType
 import org.springframework.stereotype.Service
+import org.springframework.web.reactive.function.client.WebClient
+import org.springframework.web.reactive.function.client.bodyToMono
+import reactor.core.publisher.Mono
 
 @Service
 @EnableConfigurationProperties(LoggerProperties::class)
 class LoggerTracing(
     @Autowired val properties: LoggerProperties
 ) {
+    fun getUUID(): List<String> {
+        val webClient = WebClient.builder()
+            .baseUrl(properties.uri)
+            .defaultHeader(CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+            .build()
+
+        val mono: Mono<List<String>> = webClient.get().exchangeToMono { response ->
+            if (response.statusCode() == HttpStatus.OK) {
+                response.bodyToMono<List<String>>()
+            } else {
+                Mono.just(listOf("Erro response"))
+            }
+        }
+
+        return mono.block()!!
+    }
 
     fun someLibraryMethod(): Boolean {
         val l = LoggerFactory.getLogger(LoggerTracing::class.java)

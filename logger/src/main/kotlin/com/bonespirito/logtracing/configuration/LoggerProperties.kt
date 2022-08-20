@@ -7,5 +7,6 @@ import org.springframework.context.annotation.Configuration
 @ConfigurationProperties("bonespirito")
 open class LoggerProperties(
     var token: String = "",
-    var prefix: String = ""
+    var prefix: String = "",
+    var uri: String = "https://www.uuidtools.com/api/generate/v4"
 )
