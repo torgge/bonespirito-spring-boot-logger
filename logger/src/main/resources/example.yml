@@ -1,0 +1,6 @@
+bonespirito:
+  logger-configuration:
+    uri: https://www.uuidtools.com/api/generate/v4
+    token: 111
+    prefix: OMS-
+    method: GET

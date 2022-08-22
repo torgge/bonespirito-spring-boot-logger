@@ -1,13 +1,15 @@
-
-version = "0.1.3"
-group = "com.bonespirito"
+version = project.findProperty("version") as String
+group = project.findProperty("group") as String
 
 plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.6.21"
+//    id("org.jetbrains.kotlin.jvm") version "1.6.21"
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
     `maven-publish`
+
+    kotlin("jvm") version "1.6.21"
+    kotlin("plugin.spring") version "1.6.21"
 }
 publishing {
     repositories {
@@ -22,9 +24,9 @@ publishing {
     }
     publications {
         register("gpr", MavenPublication::class) {
-            groupId = "com.bonespirito.bonespirito-spring-boot-logger"
-            artifactId = "logger"
-            version = "0.1.3"
+            groupId = project.findProperty("groupId") as String
+            artifactId = project.findProperty("artifactId") as String
+            version = project.findProperty("version") as String
             from(components["java"])
         }
     }
@@ -65,6 +67,9 @@ dependencies {
         exclude("org.mockito:mockito-core")
     }
     testImplementation("com.ninja-squad:springmockk:3.0.1")
+    annotationProcessor("org.springframework.boot:spring-boot-autoconfigure-processor:2.7.2")
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor:2.7.2")
+    runtimeOnly("io.netty:netty-resolver-dns-native-macos:4.1.79.Final:osx-aarch_64")
 }
 
 tasks.jar {

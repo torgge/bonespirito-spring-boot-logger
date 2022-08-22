@@ -3,20 +3,39 @@
  */
 package com.bonespirito.logtracing
 
-import com.bonespirito.logtracing.configuration.LoggerProperties
-import io.mockk.mockk
+import com.bonespirito.logtracing.configuration.ConfigurationUUIDProperties
+import com.bonespirito.logtracing.service.LoggerTracing
 import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.runner.RunWith
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.junit4.SpringRunner
 
-@SpringBootTest("bonespirito.token=Hello")
-open class LoggerTest {
+@SpringBootTest(
+    properties = [
+        "bonespirito.logger-configuration.token=123-456",
+        "bonespirito.logger-configuration.prefix=TESTE-",
+        "bonespirito.logger-configuration.method=GET",
+        "bonespirito.logger-configuration.uri=https://www.uuidtools.com/api/generate/v4"
+    ],
+    classes = [LoggerTracing::class, ConfigurationUUIDProperties::class]
+)
+@RunWith(
+    SpringRunner::class
+)
+class LoggerTest {
 
-    val properties: LoggerProperties = mockk()
-    val classUnderTest: LoggerTracing = LoggerTracing(properties)
+    @Autowired
+    private lateinit var loggerTracing: LoggerTracing
 
     @Test
     fun `test`() {
-        assertTrue(classUnderTest.someLibraryMethod())
+        assertTrue(loggerTracing.someLibraryMethod())
+    }
+
+    @Test
+    fun `testUUID`() {
+        assertTrue(loggerTracing.getUUID().isNotEmpty())
     }
 }
